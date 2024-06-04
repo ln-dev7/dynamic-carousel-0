@@ -1,0 +1,22 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.description {
+  overflow: hidden;
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 0.25s;
+  p {
+    min-height: 0;
+    transition: visibility 1s;
+    visibility: hidden;
+  }
+  &.active {
+    margin-top: 1rem;
+    grid-template-rows: 1fr;
+  }
+  &.active p {
+    visibility: visible;
+  }
+}
