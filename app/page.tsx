@@ -44,7 +44,7 @@ export default function Home() {
     }
   };
 
-  const handleVideoPlay = () => {
+  const updateProgress = () => {
     const video = videoRefs.current[active];
     if (video) {
       const progress = (video.currentTime / video.duration) * 100;
@@ -116,7 +116,7 @@ export default function Home() {
               </div>
               {active === index && (
                 <div
-                  className="duration-300 transition-all"
+                  className="transition-all"
                   style={{
                     width: `${progress}%`,
                     height: "5px",
@@ -124,6 +124,7 @@ export default function Home() {
                     position: "absolute",
                     bottom: 0,
                     left: 0,
+                    transitionDuration: "0.5s",
                   }}
                 ></div>
               )}
@@ -146,7 +147,7 @@ export default function Home() {
                 autoPlay
                 loop={false}
                 muted
-                onTimeUpdate={handleVideoPlay}
+                onTimeUpdate={updateProgress}
                 onEnded={handleVideoEnd}
               >
                 <source src={item.video} type="video/mp4" />
