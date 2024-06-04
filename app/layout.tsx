@@ -2,13 +2,13 @@ import type { Metadata } from "next";
 import "./globals.scss";
 import { Space_Grotesk, Outfit } from 'next/font/google';
 
-export const spaceGrotesk = Space_Grotesk({
+const spaceGrotesk = Space_Grotesk({
   subsets: ['latin'],
   weight: ['700'],
   variable: '--font-space-grotesk',
 });
 
-export const outfit = Outfit({
+const outfit = Outfit({
   subsets: ['latin'],
   weight: ["400"],
   variable: '--font-outfit',

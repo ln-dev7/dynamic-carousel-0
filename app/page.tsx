@@ -33,7 +33,6 @@ export default function Home() {
   const [active, setActive] = React.useState(0);
   const [progress, setProgress] = React.useState(0);
   const videoRefs = React.useRef<HTMLVideoElement[] | null[]>([]);
-  const animationFrameRef = React.useRef<number | null>(null);
 
   const handleShow = (index: number) => {
     setActive(index);
@@ -45,35 +44,13 @@ export default function Home() {
     }
   };
 
-  const handleTimeUpdate = () => {
+  const handleVideoPlay = () => {
     const video = videoRefs.current[active];
     if (video) {
       const progress = (video.currentTime / video.duration) * 100;
       setProgress(progress);
     }
-    //animationFrameRef.current = requestAnimationFrame(handleTimeUpdate);
   };
-
-  // React.useEffect(() => {
-  //   const video = videoRefs.current[active];
-  //   if (video) {
-  //     const handlePlay = () => {
-  //       animationFrameRef.current = requestAnimationFrame(handleTimeUpdate);
-  //     };
-  //     const handlePause = () => {
-  //       cancelAnimationFrame(animationFrameRef.current!);
-  //     };
-  //     video.addEventListener("play", handlePlay);
-  //     video.addEventListener("pause", handlePause);
-  //     video.addEventListener("ended", handleVideoEnd);
-  
-  //     return () => {
-  //       video.removeEventListener("play", handlePlay);
-  //       video.removeEventListener("pause", handlePause);
-  //       video.removeEventListener("ended", handleVideoEnd);
-  //     };
-  //   }
-  // }, [active]);
 
   const handleVideoEnd = () => {
     setActive((prevActive) => {
@@ -169,7 +146,7 @@ export default function Home() {
                 autoPlay
                 loop={false}
                 muted
-                onTimeUpdate={handleTimeUpdate}
+                onTimeUpdate={handleVideoPlay}
                 onEnded={handleVideoEnd}
               >
                 <source src={item.video} type="video/mp4" />
